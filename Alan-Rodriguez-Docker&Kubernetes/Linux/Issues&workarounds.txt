@@ -1,0 +1,30 @@
+1)
+
+In case you are not able to connect to docker registry for pulling images then do as follows,
+
+Windows Security -> Allow firewall through an app -> Add WSL in the options
+
+Basically we are giving internet access to WSL 
+
+
+2)
+
+If Ubuntu does not start after opening(you do not see the terminal opening to communicate)
+
+Check lxssmanager services , it should be in running state
+
+Services -> lxssmanager -> start
+
+if it is in running state , right click and restart it
+
+3) Uninstall Ubuntu
+
+Apps -> Uninstall
+
+in poweshell run the following commands,
+
+wsl --list --verbose (No entries should be there)
+
+wsl --unregister Ubuntu
+
+wsl --shutdown

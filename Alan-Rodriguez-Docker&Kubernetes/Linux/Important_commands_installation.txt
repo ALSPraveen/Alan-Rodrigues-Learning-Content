@@ -1,0 +1,7 @@
+tree,
+
+sudo apt install tree
+
+netstat,
+
+sudo apt install net-tools

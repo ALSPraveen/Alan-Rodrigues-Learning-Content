@@ -1,0 +1,68 @@
+Apache Spark : (Pyspark)
+
+Pyspark is the interface for Apache spark in python and is often used for large scale data processing and machine learning.
+
+If you have huge amount of data ,we perform the operations on data in distributed systems.
+
+It runs workloads 100* faster (even faster than map reduce)
+
+Starting a Spark session is a fundamental step in using Apache Spark for big data processing. The Spark session is the entry point to any Spark functionality and provides a way to interact with the Spark cluster, manage configurations, and execute data processing tasks. Here’s why starting a Spark session is essential:
+
+1. Initialization of Spark Context
+SparkContext: The Spark session initializes the SparkContext, which is the core component of Spark that coordinates the execution of tasks across a Spark cluster. It provides the necessary resources and environment to execute your Spark applications.
+Cluster Connection: It establishes a connection to a cluster manager (like YARN, Mesos, or Kubernetes) or a standalone Spark cluster, enabling distributed data processing.
+
+
+pip install pyspark
+
+import pyspark
+
+import pandas as pd
+pd.read_csv('test.csv')
+
+
+from pyspark.sql import SparkSession
+spark=sparkSession.builder.appName('Spark session Name').getOrCreate()
+
+spark
+
+df_pyspark=spark.read.csv('test.csv')
+
+df_pyspark.head(3)
+
+df_pyspark.printSchema()
+
+type(df_pyspark) --pyspark.sql.dataframe.DataFrame
+
+df_pyspark=spark.read.option('header','true').csv('test.csv',inferSchema=True).show() -- if we do not give inferSchema option here spark will by default consider evrything as string
+
+
+df_pyspark=spark.read.csv('test.csv',header=True,inferschema=True)
+
+df_pyspark.columns
+
+df_pyspark.select('Name').show()
+
+df_pyspark.select(['Name','Experience']).show()
+
+df_pyspark.dtype
+
+df_pyspark.describe().show()
+
+df_pyspark.withColumn('Experience after 2 years',df_pyspark['Experience']+2).show() ## Adding new col7umns in Data Frame
+
+df_spark=df_pyspark.drop('Experience').show()
+
+df_spark=df_pyspark.withColumnRenamed('Name','New Name').show()
+
+df_pyspark.drop('Name')
+
+df_pyspark.na.drop().show()  ## Going to drop all records that has atleast one null value
+
+df_pyspark.na.drop(how="any",thresh=2) ## It will keep all rows that has 2 non null values and delete the rest 
+
+df_pyspark.na.drop(how="any",subset=['Age']) ## Subset , will delete records from specific column
+
+df_pyspark.na.fill('My Values',['Exp','Age']) ## In exp and Age columns if there are any null values, then those will get replaced by My values string
+
+

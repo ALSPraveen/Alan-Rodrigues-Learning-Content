@@ -1,0 +1,9 @@
+How to open VS code from Ubuntu,
+
+If you are doing it for the first time,
+
+1) Open WSL terminal
+2) cd /mnt/c
+3) type code .
+   this will install code command used to open vs code.
+4) Now you are ready to use code .
